@@ -22,6 +22,7 @@ function mean(arr) {
 
 function median(arr) {
     arr.sort((a, b) => a - b);
+
     if(arr.length % 2) {
         //for odd amount of numbers
         return arr[(arr.length / 2) - .5]
@@ -30,7 +31,7 @@ function median(arr) {
 }
 
 function mode(arr) {
-
+    
 }
 
 

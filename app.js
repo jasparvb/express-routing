@@ -23,6 +23,22 @@ app.get("/mean", function(req, res, next){
 })
 
 
+app.get("/median", function(req, res, next){
+    try {
+        if (!req.query.nums) throw new ExpressError("Nums are required!", 400);
+        let arr = req.query.nums.split(",");
+        let numArr = checkNums(arr);
+
+        if (!Array.isArray(numArr)) {
+            throw new ExpressError(numArr, 400);
+        }
+        return res.send({ operation: "median", value: median(numArr) });
+    } catch (err) {
+        return next(err);
+    }
+})
+
+
 // 404 handler
 app.use(function (req, res, next) {
     const notFoundError = new ExpressError("Not Found", 404);
