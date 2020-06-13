@@ -11,9 +11,7 @@ app.get("/mean", function(req, res, next){
     try {
         if (!req.query.nums) throw new ExpressError("Nums are required!", 400);
         let arr = req.query.nums.split(",");
-        console.log(arr);
         let numArr = checkNums(arr);
-        console.log(numArr);
 
         if (!Array.isArray(numArr)) {
             throw new ExpressError(numArr, 400);

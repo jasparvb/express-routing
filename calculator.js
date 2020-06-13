@@ -21,7 +21,12 @@ function mean(arr) {
 }
 
 function median(arr) {
-
+    arr.sort((a, b) => a - b);
+    if(arr.length % 2) {
+        //for odd amount of numbers
+        return arr[(arr.length / 2) - .5]
+    }
+    return (arr[(arr.length / 2) - 1] + arr[(arr.length / 2)]) / 2
 }
 
 function mode(arr) {
