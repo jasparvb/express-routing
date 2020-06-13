@@ -4,16 +4,21 @@ const {checkNums, mean, median, mode} = require('./calculator');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/mean", function(req, res, next){
     try {
         if (!req.query.nums) throw new ExpressError("Nums are required!", 400);
-        let numArr = req.query.nums.split(",");
-        let error = checkNums(numArr);
-        if (!error) {
-            return res.send({ operation: "mean", value: mean(numArr) });
+        let arr = req.query.nums.split(",");
+        console.log(arr);
+        let numArr = checkNums(arr);
+        console.log(numArr);
+
+        if (!Array.isArray(numArr)) {
+            throw new ExpressError(numArr, 400);
         }
-        throw new ExpressError(error, 400);
+        return res.send({ operation: "mean", value: mean(numArr) });
     } catch (err) {
         return next(err);
     }
