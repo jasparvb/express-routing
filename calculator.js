@@ -37,7 +37,7 @@ function mode(arr) {
         count[arr[i]] ? count[arr[i]]++ : count[arr[i]] = 1;
         if(maxNum < count[arr[i]]) maxNum++;
     }
-    for(n in count) {
+    for(let n in count) {
         if(count[n] === maxNum) {
             modes.push(n);
         }
