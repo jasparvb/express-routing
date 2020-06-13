@@ -3,7 +3,7 @@
 
 function checkNums(arr) {
     let numArr = [];
-    for(i=0; i<arr.length; i++) {
+    for(i = 0; i < arr.length; i++) {
         let numVal = Number(arr[i]);
         if(Number.isNaN(numVal)) {
             return `${arr[i]} is not a number!`;
@@ -24,14 +24,25 @@ function median(arr) {
     arr.sort((a, b) => a - b);
 
     if(arr.length % 2) {
-        //for odd amount of numbers
-        return arr[(arr.length / 2) - .5]
+        return arr[(arr.length - 1 ) / 2]
     }
     return (arr[(arr.length / 2) - 1] + arr[(arr.length / 2)]) / 2
 }
 
 function mode(arr) {
-    
+    let count = {};
+    let maxNum = 0;
+    let modes = [];
+    for(i = 0; i < arr.length; i++) {
+        count[arr[i]] ? count[arr[i]]++ : count[arr[i]] = 1;
+        if(maxNum < count[arr[i]]) maxNum++;
+    }
+    for(n in count) {
+        if(count[n] === maxNum) {
+            modes.push(n);
+        }
+    }
+    return modes.join(", ");
 }
 
 
